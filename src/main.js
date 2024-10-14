@@ -1,7 +1,25 @@
 // query selector variables go here 👇
+//--------------------Main Poster-------------------//
+let posterImage = document.querySelector('.poster-img')
+let posterTitle = document.querySelector('.poster-title')
+let posterQuote = document.querySelector('.poster-quote')
+//--------------------Make Poster------------------//
+let imageInput = document.querySelector('#poster-image-url')
+let titleInput = document.querySelector('#poster-title')
+let quoteInput = document.querySelector('#poster-quote')
+//---------------------Sections----------------------------//
+let posterMainSection = document.querySelector('.main-poster')
+let posterFormSection = document.querySelector('.poster-form')
+let posterSaveSection = document.querySelector('.saved-posters')
+//----------------------Buttons---------------------------//
+let savePosterButton = document.querySelector('.save-poster')
+let showSavePosterButton = document.querySelector('.show-saved')
+let randomPosterButton = document.querySelector('.show-random')
+let makePosterButton = document.querySelector('.show-form')
+let showMainButton = document.querySelector('.show-main')
+let backMainButton = document.querySelector('.back-to-main')
+let showPosterButton = document.querySelector('.make-poster')
 
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -100,12 +118,21 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
+
 var currentPoster;
 
-// event listeners go here 👇
+//-----------------Event Listeners----------------------//
 
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
+randomPosterButton.addEventListener('click', generateRandomPoster)
+makePosterButton.addEventListener('click', showForm)
+showSavePosterButton.addEventListener('click', showSavePoster)
+showMainButton.addEventListener('click', showMain)
+backMainButton.addEventListener('click', backMain)
+savePosterButton.addEventListener('click', saveCurrentPoster) 
+showPosterButton.addEventListener('click', showMyPoster)
+
+//-------------------- Functions ------------------------//
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -116,4 +143,76 @@ function createPoster(imageURL, title, quote) {
     imageURL: imageURL, 
     title: title, 
     quote: quote}
+}
+function generateRandomPoster() {
+  posterImage.src = images[getRandomIndex(images)];
+  posterTitle.innerText = titles[getRandomIndex(titles)];
+  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+
+  currentPoster = createPoster(randomImage, randomTitle, randomQuote);
+}
+
+function displayPoster(poster) {
+  posterImage.src = poster.imageURL;
+  posterTitle.innerText = poster.title;
+  posterQuote.innerText = poster.quote
+}
+
+function saveCurrentPoster(event) {
+  event.preventDefault();
+
+  if (currentPoster) {
+    let isDuplicate = savedPosters.some(poster => poster.id === currentPoster.id)
+  
+    if (!isDuplicate) {
+      savedPosters.push(currentPoster)
+      console.log('Poster saved:', currentPoster);
+    } else {
+      console.log('This poster is already saved.');
+    } 
+  } else {
+      console.log('No poster to save')
+    }
+}
+
+function showMyPoster(event) {
+  event.preventDefault();
+
+  let imageURL = imageInput.value;
+  let title = titleInput.value;
+  let quote = quoteInput.value;
+
+  currentPoster = createPoster(imageURL, title, quote);
+
+  images.push(imageURL);
+  titles.push(title);
+  quotes.push(quote);
+
+  displayPoster(currentPoster);
+
+  showMain();
+}
+
+function showForm() {
+  posterMainSection.classList.add('hidden');
+  posterFormSection.classList.remove('hidden');
+}
+
+function showMain() {
+  posterMainSection.classList.remove('hidden');
+  posterFormSection.classList.add('hidden');
+}
+
+function showSavePoster() {
+  posterMainSection.classList.add('hidden');
+  posterSaveSection.classList.remove('hidden');
+}
+
+function backMain() {
+  posterMainSection.classList.remove('hidden');
+  posterSaveSection.classList.add('hidden');
+}
+
+window.onload = function () {
+  generateRandomPoster();
 }
