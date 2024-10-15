@@ -45,7 +45,8 @@ button:hover {
   justify-content: center;
   margin: 20px auto;
   padding: 50px 20px;
-  width: 70%;
+  width: 800px;
+  height: auto;
 }
 
 .poster-img {
@@ -119,14 +120,15 @@ button:hover {
 .mini-poster {
   background: black;
   color: white;
-  height: 340px;
+  height: 380px;
   padding: 25px;
   width: 425px;
 }
 
 .mini-poster img {
-  height:200px;
-  width: 300px;
+  height: auto;
+  max-height: 300px;
+  width: 100%;
 }
 
 .mini-poster h2,
