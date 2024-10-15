@@ -205,7 +205,7 @@ function displaySavedPosters() {
 
   savedPosters.forEach((poster) => {
     const posterElement = document.createElement('div');
-    posterElement.classList.add('poster');
+    posterElement.classList.add('mini-poster');
 
     posterElement.innerHTML = `
     <img src="${poster.imageURL}" alt="Poster Image">
