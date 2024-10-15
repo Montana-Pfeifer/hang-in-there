@@ -7,6 +7,8 @@ let posterQuote = document.querySelector('.poster-quote')
 let imageInput = document.querySelector('#poster-image-url')
 let titleInput = document.querySelector('#poster-title')
 let quoteInput = document.querySelector('#poster-quote')
+//--------------------Random Poster
+
 //---------------------Sections----------------------------//
 let posterMainSection = document.querySelector('.main-poster')
 let posterFormSection = document.querySelector('.poster-form')
@@ -145,9 +147,13 @@ function createPoster(imageURL, title, quote) {
     quote: quote}
 }
 function generateRandomPoster() {
-  posterImage.src = images[getRandomIndex(images)];
-  posterTitle.innerText = titles[getRandomIndex(titles)];
-  posterQuote.innerText = quotes[getRandomIndex(quotes)];
+  let randomImage = images[getRandomIndex(images)];
+  let randomTitle = titles[getRandomIndex(titles)];
+  let randomQuote = quotes[getRandomIndex(quotes)];
+
+  posterImage.src = randomImage
+  posterTitle.innerText = randomTitle
+  posterQuote.innerText = randomQuote
 
   currentPoster = createPoster(randomImage, randomTitle, randomQuote);
 }
@@ -193,6 +199,24 @@ function showMyPoster(event) {
   showMain();
 }
 
+function displaySavedPosters() {
+  const savedPostersGrid = document.querySelector('.saved-posters-grid')
+  savedPostersGrid.innerHTML = '';
+
+  savedPosters.forEach((poster) => {
+    const posterElement = document.createElement('div');
+    posterElement.classList.add('poster');
+
+    posterElement.innerHTML = `
+    <img src="${poster.imageURL}" alt="Poster Image">
+    <h2>${poster.title}</h2>
+    <p>${poster.quote}</p>
+    `;
+
+    savedPostersGrid.appendChild(posterElement);
+  });
+}
+
 function showForm() {
   posterMainSection.classList.add('hidden');
   posterFormSection.classList.remove('hidden');
@@ -206,6 +230,8 @@ function showMain() {
 function showSavePoster() {
   posterMainSection.classList.add('hidden');
   posterSaveSection.classList.remove('hidden');
+
+  displaySavedPosters();
 }
 
 function backMain() {
