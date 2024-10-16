@@ -150,41 +150,58 @@ button:hover {
 /* ~~~~~~ Unmotivational Section ~~~~~~~ */
 .saved-unmotivational-posters {
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .unmotivational-posters-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
   padding: 20px;
+  width: 100%;
+  overflow-y: auto;
 }
 
-.mini-poster {
+.unmotivational-mini-poster {
   background: black;
   color: white;
-  height: 380px;
-  padding: 25px;
-  width: 425px;
-}
-
-.mini-poster img {
+  border-radius: 10px;
   height: auto;
-  max-height: 300px;
-  width: 100%;
+  padding: 25px;
+  width: 30%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.mini-poster h2,
-.mini-poster h4,
-.delete {
-  color: white;
-  line-height: 1;
-  width: 90%;
+.unmotivational-mini-poster img {
+  width: 100%; 
+  height: 200px;
+  object-fit: cover;
 }
 
-.mini-poster h2 {
-  font-size: 30px;
-  font-weight: normal;
-  letter-spacing: 5px;
-  margin-bottom: 10px;
+.unmotivational-mini-poster h1 {
+  font-size: 1.5em;
+  margin: 10px 0;
   text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.unmotivational-mini-poster h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+  overflow-wrap: break-word;
+  line-height: 1.2; 
+}
+
+.unmotivational-mini-poster h1,
+.unmotivational-mini-poster h3 {
+  color: white;
+  margin: 10px 0;
 }
