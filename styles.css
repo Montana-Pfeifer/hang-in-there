@@ -146,3 +146,45 @@ button:hover {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+/* ~~~~~~ Unmotivational Section ~~~~~~~ */
+.saved-unmotivational-posters {
+  padding: 40px;
+}
+
+.unmotivational-posters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.mini-poster {
+  background: black;
+  color: white;
+  height: 380px;
+  padding: 25px;
+  width: 425px;
+}
+
+.mini-poster img {
+  height: auto;
+  max-height: 300px;
+  width: 100%;
+}
+
+.mini-poster h2,
+.mini-poster h4,
+.delete {
+  color: white;
+  line-height: 1;
+  width: 90%;
+}
+
+.mini-poster h2 {
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}

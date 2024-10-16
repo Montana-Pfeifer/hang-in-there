@@ -7,19 +7,23 @@ let posterQuote = document.querySelector('.poster-quote')
 let imageInput = document.querySelector('#poster-image-url')
 let titleInput = document.querySelector('#poster-title')
 let quoteInput = document.querySelector('#poster-quote')
-//--------------------Random Poster
-
 //---------------------Sections----------------------------//
 let posterMainSection = document.querySelector('.main-poster')
 let posterFormSection = document.querySelector('.poster-form')
 let posterSaveSection = document.querySelector('.saved-posters')
+let unmotivationalSection = document.querySelector('.saved-unmotivational-poster')
 //----------------------Buttons---------------------------//
+//----------------------Main Page-------------------------//
 let savePosterButton = document.querySelector('.save-poster')
 let showSavePosterButton = document.querySelector('.show-saved')
 let randomPosterButton = document.querySelector('.show-random')
 let makePosterButton = document.querySelector('.show-form')
+let unmotivationalButton = document.querySelector('.show-unmotivational-poster')
+
 let showMainButton = document.querySelector('.show-main')
+let goMainButton = document.querySelector('.go-to-main')
 let backMainButton = document.querySelector('.back-to-main')
+
 let showPosterButton = document.querySelector('.make-poster')
 
 var images = [
@@ -132,7 +136,8 @@ showMainButton.addEventListener('click', showMain)
 backMainButton.addEventListener('click', backMain)
 savePosterButton.addEventListener('click', saveCurrentPoster) 
 showPosterButton.addEventListener('click', showMyPoster)
-
+unmotivationalButton.addEventListener('click', showUnmotivationalPosters)
+goMainButton.addEventListener('click', goToMain)
 //-------------------- Functions ------------------------//
 
 function getRandomIndex(array) {
@@ -234,9 +239,19 @@ function showSavePoster() {
   displaySavedPosters();
 }
 
+function showUnmotivationalPosters() {
+  posterMainSection.classList.add('hidden');
+  unmotivationalSection.classList.remove('hidden')
+}
+
 function backMain() {
   posterMainSection.classList.remove('hidden');
   posterSaveSection.classList.add('hidden');
+}
+
+function goToMain() {
+  posterMainSection.classList.remove('hidden');
+  unmotivationalSection.classList.add('hidden')
 }
 
 window.onload = function () {
