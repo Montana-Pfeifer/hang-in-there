@@ -352,17 +352,31 @@ function cleanData(unmotivationalArray) {
 
 function displayUnmotivationalPosters() {
   const cleanUnmotivationalPosters = cleanData(unmotivationalPosters);
-  unmotivationalGrid.innerHTML = '';
+    unmotivationalGrid.innerHTML = '';
 
-  cleanUnmotivationalPosters.forEach(poster => {
-    unmotivationalGrid.innerHTML += `
-    <article class="poster">
+  cleanUnmotivationalPosters.forEach((poster) => {
+    const posterElement = document.createElement('div');
+    posterElement.classList.add('poster')
+
+    posterElement.innerHTML = `
       <img class="poster-img" src="${poster.imageURL}" alt="${poster.title}">
       <h1 class="poster-title">${poster.title}</h1>
       <h3 class="poster-quote">${poster.quote}</h3>
-    </article>
     `;
-  });
+
+    posterElement.addEventListener('dblclick', removePosterClick)
+
+    unmotivationalGrid.appendChild(posterElement);
+  })
+};
+
+function removePosterClick(event) {
+  const posterElement = event.currentTarget;
+  const posterIndex = Array.from(unmotivationalGrid.children).indexOf(posterElement);
+  
+  unmotivationalPosters.splice(posterIndex, 1);
+  
+  displayUnmotivationalPosters();
 }
 
 function showForm() {
