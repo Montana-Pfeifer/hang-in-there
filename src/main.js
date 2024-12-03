@@ -1,9 +1,17 @@
-// query selector variables go here 👇
+// Test to see if console log works //
+console.log("This is a test.")
+//---------------------------------//
+
+//--------vvv--- query selector variables---vvv-------- //
+//-------------------Main Poster------------------------//
 let posterImage = document.querySelector(".poster-img")
 let posterTitle = document.querySelector(".poster-title")
 let posterQuote = document.querySelector(".poster-quote")
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
+
+//--------------------Buttons---------------------------//
+const randomBtn = document.querySelector(".show-random")
+
+
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -104,10 +112,11 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-// event listeners go here 👇
+// event listeners
+randomBtn.addEventListener("click", randomPoster)
 
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
+// functions and event handlers
+
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -119,8 +128,8 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 }
-console.log("This is a test.")
 
+// Makes random posters for the button and the current poster//
 function randomPoster() {
   currentPoster = createPoster(
     images[getRandomIndex(images)],
@@ -133,3 +142,4 @@ function randomPoster() {
   posterQuote.innerText = currentPoster.quote;
 }
 randomPoster();
+//---------------------------------------------------------//
