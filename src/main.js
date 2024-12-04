@@ -2,18 +2,25 @@
 console.log("This is a test.")
 //---------------------------------//
 
-//--------vvv--- query selector variables---vvv-------- //
-//-------------------Main Poster------------------------//
+//--------vvv--- Query Selector Variables---vvv-------- //
+//------------------- Main Poster ------------------------//
 let posterImage = document.querySelector(".poster-img")
 let posterTitle = document.querySelector(".poster-title")
 let posterQuote = document.querySelector(".poster-quote")
 
-//--------------------Sections-----------------------//
+//------------------ Create Poster ----------------------//
+const posterInput = document.querySelector("#poster-image-url")
+const titleInput = document.querySelector("#poster-title")
+const quoteInput = document.querySelector("#poster-quote")
+
+//-------------------- Sections -----------------------//
 const posterForm = document.querySelector(".poster-form")
 const mainPoster = document.querySelector(".main-poster")
-//--------------------Buttons---------------------------//
+
+//-------------------- Buttons ---------------------------//
 const randomBtn = document.querySelector(".show-random")
 const showFormBtn = document.querySelector(".show-form")
+const showMainBtn = document.querySelector(".show-main")
 
 var images = [
   "./assets/bees.jpg",
@@ -118,8 +125,9 @@ var currentPoster;
 // event listeners
 randomBtn.addEventListener("click", randomPoster)
 showFormBtn.addEventListener("click", showForm)
-// functions and event handlers
+showMainBtn.addEventListener("click", showMain)
 
+// functions and event handlers
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
@@ -151,4 +159,9 @@ function showForm() {
   posterForm.classList.toggle("hidden")
   mainPoster.classList.toggle("hidden")
 
+}
+function showMain() {
+  mainPoster.classList.toggle("hidden")
+  posterForm.classList.toggle("hidden")
+  
 }
