@@ -21,6 +21,7 @@ const mainPoster = document.querySelector(".main-poster")
 const randomBtn = document.querySelector(".show-random")
 const showFormBtn = document.querySelector(".show-form")
 const showMainBtn = document.querySelector(".show-main")
+const makePosterBtn = document.querySelector(".make-poster")
 
 var images = [
   "./assets/bees.jpg",
@@ -126,6 +127,7 @@ var currentPoster;
 randomBtn.addEventListener("click", randomPoster)
 showFormBtn.addEventListener("click", showForm)
 showMainBtn.addEventListener("click", showMain)
+makePosterBtn.addEventListener("click", makePoster)
 
 // functions and event handlers
 function getRandomIndex(array) {
@@ -154,6 +156,24 @@ function randomPoster() {
 }
 randomPoster();
 //---------------------------------------------------------//
+
+function makePoster(event) {
+  event.preventDefault()
+
+  const imageURL = posterInput.value
+  const title = titleInput.value
+  const quote = quoteInput.value
+
+  currentPoster = createPoster(imageURL, title, quote)
+
+  posterImage.src = currentPoster.imageURL
+  posterTitle.innerText = currentPoster.title
+  posterQuote.innerText = currentPoster.quote
+
+  console.log("New Poster was created: ", currentPoster)
+
+  showMain()
+}
 
 function showForm() {
   posterForm.classList.toggle("hidden")
