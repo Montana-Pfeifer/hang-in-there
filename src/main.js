@@ -8,9 +8,12 @@ let posterImage = document.querySelector(".poster-img")
 let posterTitle = document.querySelector(".poster-title")
 let posterQuote = document.querySelector(".poster-quote")
 
+//--------------------Sections-----------------------//
+const posterForm = document.querySelector(".poster-form")
+const mainPoster = document.querySelector(".main-poster")
 //--------------------Buttons---------------------------//
 const randomBtn = document.querySelector(".show-random")
-
+const showFormBtn = document.querySelector(".show-form")
 
 var images = [
   "./assets/bees.jpg",
@@ -114,7 +117,7 @@ var currentPoster;
 
 // event listeners
 randomBtn.addEventListener("click", randomPoster)
-
+showFormBtn.addEventListener("click", showForm)
 // functions and event handlers
 
 function getRandomIndex(array) {
@@ -143,3 +146,9 @@ function randomPoster() {
 }
 randomPoster();
 //---------------------------------------------------------//
+
+function showForm() {
+  posterForm.classList.toggle("hidden")
+  mainPoster.classList.toggle("hidden")
+
+}
