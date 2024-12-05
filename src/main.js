@@ -13,9 +13,13 @@ const posterInput = document.querySelector("#poster-image-url")
 const titleInput = document.querySelector("#poster-title")
 const quoteInput = document.querySelector("#poster-quote")
 
+//--------------------Saved Posters---------------------//
+const savePosterGrid = document.querySelector(".saved-posters-grid")
+
 //-------------------- Sections -----------------------//
 const posterForm = document.querySelector(".poster-form")
 const mainPoster = document.querySelector(".main-poster")
+const saveForm = document.querySelector(".saved-posters")
 
 //-------------------- Buttons ---------------------------//
 const randomBtn = document.querySelector(".show-random")
@@ -23,6 +27,7 @@ const showFormBtn = document.querySelector(".show-form")
 const showMainBtn = document.querySelector(".show-main")
 const makePosterBtn = document.querySelector(".make-poster")
 const savePosterBtn = document.querySelector(".save-poster")
+const saveFormBtn = document.querySelector(".show-saved")
 
 var images = [
   "./assets/bees.jpg",
@@ -130,7 +135,7 @@ showFormBtn.addEventListener("click", showForm)
 showMainBtn.addEventListener("click", showMain)
 makePosterBtn.addEventListener("click", makePoster)
 savePosterBtn.addEventListener("click", savePoster)
-
+saveFormBtn.addEventListener("click", showSaved)
 
 // functions and event handlers
 function getRandomIndex(array) {
@@ -178,20 +183,36 @@ function makePoster(event) {
   showMain()
 }
 
- function savePoster() {
-
+function savePoster() {
   const isDuplicate = savedPosters.some(
     (poster) => poster.id === currentPoster.id
-  )
-  if(!isDuplicate) {
-    titles.push(currentPoster.title)
-    quotes.push(currentPoster.quote)
-    images.push(currentPoster.imageURL)
-    console.log("Poster Saved: ", currentPoster)
+  );
+
+  if (!isDuplicate) {
+    savedPosters.push(currentPoster);
+    console.log("Poster Saved: ", currentPoster);
+
+    displaySavedPosters();
   } else {
-    console.log("Poster is already saved.")
+    console.log("Poster is already saved.");
   }
- }
+}
+function displaySavedPosters() {
+  savePosterGrid.innerHTML = "";
+
+  savedPosters.forEach((poster) => {
+    const miniPoster = document.createElement("div");
+    miniPoster.classList.add("mini-poster")
+    
+    miniPoster.innerHTML = `
+    <img src="${poster.imageURL}" alt="Poster Image">
+      <h2>${poster.title}</h2>
+      <h4>${poster.quote}</h4>
+      `
+
+  savePosterGrid.appendChild(miniPoster)
+  })
+}
 
 function showForm() {
   posterForm.classList.toggle("hidden")
@@ -202,4 +223,11 @@ function showMain() {
   mainPoster.classList.toggle("hidden")
   posterForm.classList.toggle("hidden")
   
+}
+
+function showSaved() {
+  saveForm.classList.toggle("hidden")
+  mainPoster.classList.toggle("hidden")
+
+  displaySavedPosters()
 }
