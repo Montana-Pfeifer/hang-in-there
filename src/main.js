@@ -22,6 +22,7 @@ const randomBtn = document.querySelector(".show-random")
 const showFormBtn = document.querySelector(".show-form")
 const showMainBtn = document.querySelector(".show-main")
 const makePosterBtn = document.querySelector(".make-poster")
+const savePosterBtn = document.querySelector(".save-poster")
 
 var images = [
   "./assets/bees.jpg",
@@ -128,6 +129,8 @@ randomBtn.addEventListener("click", randomPoster)
 showFormBtn.addEventListener("click", showForm)
 showMainBtn.addEventListener("click", showMain)
 makePosterBtn.addEventListener("click", makePoster)
+savePosterBtn.addEventListener("click", savePoster)
+
 
 // functions and event handlers
 function getRandomIndex(array) {
@@ -174,6 +177,21 @@ function makePoster(event) {
 
   showMain()
 }
+
+ function savePoster() {
+
+  const isDuplicate = savedPosters.some(
+    (poster) => poster.id === currentPoster.id
+  )
+  if(!isDuplicate) {
+    titles.push(currentPoster.title)
+    quotes.push(currentPoster.quote)
+    images.push(currentPoster.imageURL)
+    console.log("Poster Saved: ", currentPoster)
+  } else {
+    console.log("Poster is already saved.")
+  }
+ }
 
 function showForm() {
   posterForm.classList.toggle("hidden")
