@@ -268,6 +268,7 @@ saveFormBtn.addEventListener("click", showSaved)
 unmotivationalFormBtn.addEventListener("click", showUnmotivational)
 backToMainBtn.addEventListener("click", backMain)
 goToMainBtn.addEventListener("click", toMain)
+
 // functions and event handlers
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -346,31 +347,39 @@ function displaySavedPosters() {
 }
 
 function displayUnmotivationalPosters() {
-  unmotivationalGrid.innerHTML = "";
+  unmotivationalGrid.innerHTML = ""; 
 
-  cleanedPosters.forEach((poster) => {
-    const miniPoster = document.createElement("div")
-    miniPoster.classList.add("mini-poster")
+  unmotivationalPosters.forEach((poster, index) => {
+    const miniPoster = document.createElement("div");
+    miniPoster.classList.add("mini-poster");
 
     miniPoster.innerHTML = `
-    <img src="${poster.imageURL}" alt="Poster Image">
-      <h2>${poster.title}</h2>
-      <h4>${poster.quote}</h4>
-      `
-    unmotivationalGrid.appendChild(miniPoster)
-  })
+      <img src="${poster.img_url}" alt="Poster Image">
+      <h2>${poster.name}</h2>
+      <p>${poster.description}</p>
+    `;
+
+    miniPoster.addEventListener("dblclick", () => deleteUnmotivationalPoster(index));
+
+    unmotivationalGrid.appendChild(miniPoster);
+  });
 }
 
 
 function cleanData() {
-  return unmotivationalPosters.map((poster) => {
+  return unmotivationalPosters.map((poster) => ({
+    imageURL: poster.img_url,
+    title: poster.name,
+    quote: poster.description,
+  }));
+}
 
-  const imageURL = poster.img_url 
-  const title = poster.name 
-  const quote = poster.description
+function deleteUnmotivationalPoster(index) {
+  unmotivationalPosters.splice(index, 1);
 
-  return createPoster(imageURL, title, quote)
-})
+  console.log(`Poster at index ${index} deleted`);
+
+  displayUnmotivationalPosters();
 }
 
 function showForm() {
