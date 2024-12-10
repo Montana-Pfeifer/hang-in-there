@@ -256,7 +256,7 @@ let unmotivationalPosters = [
 
 var savedPosters = [];
 var currentPoster;
-const cleanedPosters = cleanData(unmotivationalPosters)
+const cleanedPosters = cleanData()
 
 // event listeners
 randomBtn.addEventListener("click", randomPoster)
@@ -324,7 +324,12 @@ function savePoster() {
     savedPosters.push(currentPoster);
     console.log("Poster Saved: ", currentPoster);
 
+    images.push(currentPoster.imageURL)
+    titles.push(currentPoster.title)
+    quotes.push(currentPoster.quote)
+
     displaySavedPosters();
+
   } else {
     console.log("Poster is already saved.");
   }
@@ -349,19 +354,19 @@ function displaySavedPosters() {
 function displayUnmotivationalPosters() {
   unmotivationalGrid.innerHTML = ""; 
 
-  unmotivationalPosters.forEach((poster, index) => {
-    const miniPoster = document.createElement("div");
-    miniPoster.classList.add("mini-poster");
+  cleanedPosters.forEach((poster, index) => {
+    const unmotivationalMiniPoster = document.createElement("div");
+    unmotivationalMiniPoster.classList.add("mini-poster");
 
-    miniPoster.innerHTML = `
-      <img src="${poster.img_url}" alt="Poster Image">
-      <h2>${poster.name}</h2>
-      <p>${poster.description}</p>
+    unmotivationalMiniPoster.innerHTML = `
+      <img src="${poster.imageURL}" alt="Poster Image">
+      <h2>${poster.title}</h2>
+      <p>${poster.quote}</p>
     `;
 
-    miniPoster.addEventListener("dblclick", () => deleteUnmotivationalPoster(index));
+    unmotivationalMiniPoster.addEventListener("dblclick", () => deleteUnmotivationalPoster(index));
 
-    unmotivationalGrid.appendChild(miniPoster);
+    unmotivationalGrid.appendChild(unmotivationalMiniPoster);
   });
 }
 
@@ -375,7 +380,7 @@ function cleanData() {
 }
 
 function deleteUnmotivationalPoster(index) {
-  unmotivationalPosters.splice(index, 1);
+  cleanedPosters.splice(index, 1);
 
   console.log(`Poster at index ${index} deleted`);
 
@@ -390,7 +395,6 @@ function showForm() {
 function showMain() {
   mainPoster.classList.toggle("hidden")
   posterForm.classList.toggle("hidden")
-  unmotivationalForm.classList.toggle("hidden")
 }
 
 function showSaved() {
