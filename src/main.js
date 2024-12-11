@@ -20,8 +20,8 @@ const unmotivationalGrid = document.querySelector(".unmotivational-posters-grid"
 //-------------------- Sections -----------------------//
 const posterForm = document.querySelector(".poster-form")
 const mainPoster = document.querySelector(".main-poster")
-const saveForm = document.querySelector(".saved-posters")
-const unmotivationalForm = document.querySelector(".unmotivational-posters")
+var saveForm = document.querySelector(".saved-posters")
+let unmotivationalForm = document.querySelector(".unmotivational-posters")
 
 //-------------------- Buttons ---------------------------//
 const randomBtn = document.querySelector(".show-random")
@@ -356,7 +356,7 @@ function displayUnmotivationalPosters() {
 
   cleanedPosters.forEach((poster, index) => {
     const unmotivationalMiniPoster = document.createElement("div");
-    unmotivationalMiniPoster.classList.add("mini-poster");
+    unmotivationalMiniPoster.classList.add("unmotivational-mini-poster");
 
     unmotivationalMiniPoster.innerHTML = `
       <img src="${poster.imageURL}" alt="Poster Image">

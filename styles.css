@@ -38,20 +38,25 @@ button:hover {
   height: 100vh;
 }
 
+
 .poster {
-  background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px auto;
-  padding: 50px 20px;
-  width: 70%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 50px 20px;
+    width: 175vh;
+    height: 89vh;
 }
+
+
 
 .poster-img {
   background-size: cover;
   border: 2px solid white;
-  max-width: 80%;
+  width: 90vh;
+  height: 65vh;
 }
 
 .poster-title,
@@ -127,6 +132,7 @@ button:hover {
 .mini-poster img {
   height:200px;
   width: 300px;
+  object-fit: cover;
 }
 
 .mini-poster h2,
@@ -138,6 +144,59 @@ button:hover {
 }
 
 .mini-poster h2 {
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Unmotivational Poster section 
+Add a div and add mini posters to that div flexbox grid -> unmotivational-mini-posters (flex box) 
+-> mini-poster(content)
+*/
+h2 > body {
+  margin: 80px 0px 0px 0px;
+}
+
+.unmotivational-posters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
+  padding: 30px 29px 36px 27px;
+  align-content: center;
+  margin: 155px;
+}
+
+.unmotivational-mini-poster {
+  background: #808080;
+  color: white;
+  height: 530px;
+  padding: 20px;
+  width: 573px;
+  border-radius: 18px;
+}
+
+.unmotivational-mini-poster img {
+  width: 100%;
+  height: 86%;
+  object-fit: cover;
+  border: 5px;
+  border-color: black;
+  padding: 30px 30px 30px 30px;
+  margin: -19px;
+}
+
+.unmotivational-mini-poster h2,
+.unmotivational-mini-poster h4,
+.delete {
+  color: rgb(0, 0, 0);
+  line-height: 1;
+  width: 90%;
+}
+
+.unmotivational-mini-poster h2 {
   font-size: 30px;
   font-weight: normal;
   letter-spacing: 5px;
